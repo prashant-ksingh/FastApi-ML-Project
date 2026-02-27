@@ -1,0 +1,11 @@
+bmi,age_group,lifestyle_risk,city_tier,income_lpa,occupation
+25.10,middle_aged,medium,1,8.45,private_job
+20.96,young,low,1,5.20,self_employed
+28.70,senior,high,2,10.75,government_job
+22.89,middle_aged,low,2,4.90,private_job
+23.47,senior,medium,2,3.10,retired
+29.85,middle_aged,high,1,12.40,business
+20.31,young,low,2,6.80,private_job
+27.65,middle_aged,high,2,9.30,government_job
+24.12,middle_aged,medium,1,7.25,self_employed
+26.38,senior,high,3,4.50,retired
