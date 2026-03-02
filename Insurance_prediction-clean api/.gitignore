@@ -1,0 +1,28 @@
+# Virtual Environments
+venv/
+env/
+.venv/
+ENV/
+
+# Model files
+*.pkl
+model/*.pkl
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
