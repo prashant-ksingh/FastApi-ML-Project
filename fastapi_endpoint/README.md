@@ -43,23 +43,6 @@ The core application file. It contains:
 - **Pre-processing Logic:** Includes mapping dictionaries to ensure user inputs match the specific categories the model was trained on (e.g., mapping "Goa" to Tier 2 or "young" to "adult").
 - **Predict Endpoint:** The `/predict` POST endpoint that converts input data into a DataFrame and returns the model prediction.
 
-### `check_model.py` (Diagnostic Tool)
-This utility script was created to inspect the pickled ML model.
-- **Why use it?** If the API returns a 500 error related to `ValueError: Found unknown categories`, it means the model is receiving a value it wasn't trained on.
-- **How to use it:**
-    ```powershell
-    python check_model.py
-    ```
-- **Output:** It prints the model type, feature names, and the exact categories expected for every column (e.g., `city_tier` categories `[1, 2]`).
-
-### `test_predict.py` (Testing Script)
-A helper script to quickly verify the endpoint.
-- **How to use it:**
-    ```powershell
-    python test_predict.py
-    ```
-- **Requirement:** This script requires the `requests` library (`pip install requests`). Alternatively, you can use the built-in FastAPI docs at `/docs` or the PowerShell command provided below.
-
 ---
 
 ## 🧪 Testing with PowerShell
@@ -77,6 +60,28 @@ $body = @{
 
 Invoke-RestMethod -Uri "http://127.0.0.1:8000/predict" -Method Post -Body $body -ContentType "application/json"
 ```
+
+---
+
+## 🎨 Frontend (Streamlit)
+
+The project includes a user-friendly frontend built with **Streamlit**.
+
+### How to Run the Frontend
+1.  **Ensure the Backend is Running**:
+    ```powershell
+    uvicorn main:app --reload
+    ```
+2.  **Launch the Frontend**:
+    ```powershell
+    streamlit run frontend.py
+    ```
+    The application will open at `http://localhost:8501`.
+
+### Features
+-   **Interactive Form:** Enter details like age, height, weight, etc.
+-   **Real-time Prediction:** Communicates with the FastAPI backend.
+-   **Visual Feedback:** Displays results in categorized, color-coded boxes.
 
 ---
 
