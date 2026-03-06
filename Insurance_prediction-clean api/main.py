@@ -1,5 +1,4 @@
-from fastapi import FastAPI
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, HTTPException
 from model.predict import predict_output, model, MODEL_VERSION
 from schema.user_input import UserInput
 from schema.prediction_response import PredictionResponse
@@ -39,7 +38,7 @@ def predict_premium(data: UserInput):
 
     # mapping lifestyle_risk to match model categories
     lifestyle_mapping = {
-        'heigh': 'medium', # Model only knows ['low', 'medium']
+        'high': 'medium', # Model only knows ['low', 'medium']
         'medium': 'medium',
         'low': 'low'
     }
@@ -58,18 +57,15 @@ def predict_premium(data: UserInput):
         'lifestyle_risk' : lifestyle_mapping.get(data.lifestyle_risk, 'low'),
         'city_tier' : data.city_tier if data.city_tier in [1, 2] else 2,
         'income_lpa' : data.income_lpa,
-        'income_lap' : data.income_lpa, # Keeping both as requested
         'occupation' : occupation_mapping.get(data.occupation, 'private_job')
     }
 
     try:
         prediction = predict_output(user_input)
-
-        return JSONResponse(status_code = 200, content= {'response' : prediction})
+        return prediction
     
     except Exception as e:
-
-        return JSONResponse(status_code=500, content=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 

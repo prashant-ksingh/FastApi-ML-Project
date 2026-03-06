@@ -26,7 +26,7 @@ def predict_output(user_input: dict):
     df = pd.DataFrame([user_input])
 
     # Predict the class
-    pridicted_class = model.predict(df)[0]
+    predicted_class = model.predict(df)[0]
 
     # Get probailities for all classes
     probabilities = model.predict_proba(df)[0]
@@ -36,7 +36,7 @@ def predict_output(user_input: dict):
     class_probs = dict(zip(class_labels, map(lambda p: round(p, 4), probabilities)))
 
     return {
-        "predicted_category": pridicted_class,
+        "predicted_category": predicted_class,
         "confidence": round(confidence, 4),
         "class_probabilities": class_probs
     }

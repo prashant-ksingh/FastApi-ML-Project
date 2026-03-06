@@ -30,7 +30,7 @@ class UserInput(BaseModel):
     @property
     def lifestyle_risk(self)->str:
         if self.smoker and self.bmi > 30:
-            return "heigh"
+            return "high"
         elif self.smoker and self.bmi >27:
             return "medium"
         else: 
